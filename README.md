@@ -1,6 +1,7 @@
 # Invoice-manager
-Invoice Manger - upload invoice and parse to structure automatically 
+[![CircleCI](https://circleci.com/gh/qoojung/invoice-manager.svg?style=svg)](https://circleci.com/gh/qoojung/invoice-manager)
 
+Invoice Manger - upload invoice and parse to structure automatically 
 Hosted on Heroku [Check it out](https://invoice-management-2021.herokuapp.com/api/v1)
 ## Feature
 - Users can upload invoices, and this application would parse it to sturcuted fromat.
