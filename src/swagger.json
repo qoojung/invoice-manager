@@ -1,0 +1,353 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.1",
+    "title": "Invoice Management",
+    "contact": {}
+  },
+  "basePath": "/api/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user": {
+      "post": {
+        "summary": "Register User",
+        "operationId": "UserLogin",
+        "tags": [
+          "User"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/session/login": {
+      "post": {
+        "summary": "Login",
+        "operationId": "Login",
+        "tags": [
+          "Session"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/me/invoices": {
+      "post": {
+        "summary": "Invoices Upload",
+        "tags": [
+          "Invoice"
+        ],
+        "operationId": "InvoicesUpload",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "invoice",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "invoice upload"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "get": {
+        "summary": "Get invoices of User",
+        "tags": [
+          "Invoice"
+        ],
+        "operationId": "Invoices",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/me/invoices/{invoiceId}/tag": {
+      "put": {
+        "summary": "TagInvoice",
+        "tags": [
+          "Invoice"
+        ],
+        "operationId": "TagInvoice",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "uuid for get invoice"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": {
+                "tagId": "cd066dc1-0f3f-4605-b842-b6aa04540c40"
+              },
+              "type": "object",
+              "properties": {
+                "tagId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "tagId"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/me/tags": {
+      "get": {
+        "summary": "Tags",
+        "tags": [
+          "Tag"
+        ],
+        "operationId": "GetTags",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Tag",
+        "tags": [
+          "Tag"
+        ],
+        "operationId": "CreateTag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/me/tags/{tagId}": {
+      "delete": {
+        "summary": "Delete Tag",
+        "tags": [
+          "Tag"
+        ],
+        "operationId": "DeleteTag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "ID of tag."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change Tag Name",
+        "tags": [
+          "Tag"
+        ],
+        "operationId": "ChangeTagName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tagId",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "ID of tag."
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "example": {
+                "name": "??"
+              },
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/session/logout": {
+      "post": {
+        "summary": "Logout",
+        "tags": [
+          "Session"
+        ],
+        "operationId": "Logout",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Tag",
+      "description": "Tag Operations"
+    },
+    {
+      "name": "Session",
+      "description": "Session Operations"
+    },
+    {
+      "name": "User",
+      "description": "User Operations"
+    },
+    {
+      "name": "Invoice",
+      "description": "Invoice Operations"
+    }
+  ]
+}
