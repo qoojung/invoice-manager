@@ -16,7 +16,7 @@ const invoiceService = () => {
       /Date:(\d{2}).(\d{2}).(\d{4}) *Time:(\d{2}):(\d{2}):(\d{2})/,
     );
     if (!mat) throw new Error('parse fail');
-    invoiceObj.shopDate = new Date(mat[3], mat[2], mat[1], mat[4], mat[5], mat[6]);
+    invoiceObj.shopDate = new Date(mat[3], Number(mat[2] - 1), mat[1], mat[4], mat[5], mat[6]);
 
     // start item section
     invoiceObj.items = [];
@@ -75,11 +75,11 @@ const invoiceService = () => {
       },
     );
   };
-  const saveInvoiceInfo = async (userid, filebuffer) => {
+  const saveInvoiceInfo = async (userName, filebuffer) => {
     const obj = parseInvoice(filebuffer);
     const invoice = {
       id: uuid.v4(),
-      userName: userid,
+      userName,
       shopDate: obj.shopDate,
       shopName: obj.shopName,
     };
