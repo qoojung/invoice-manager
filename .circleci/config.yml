@@ -8,7 +8,8 @@ jobs:
       tag: '12.18.4'
     steps:
       - checkout
-      - node/install-packages
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
           command: yarn add mocha-junit-reporter
       - run: mkdir ~/reports
@@ -16,7 +17,7 @@ jobs:
           name: eslint
           command: yarn run eslint ./ --format junit --output-file ./reports/eslint/eslint.xml
       - run:
-          name: unittest
+          name: yarn run test
           command:  yarn run mocha test --recursive --reporter mocha-junit-reporter  ./test
           environment:
              MOCHA_FILE: ./reports/mocha/results.xml
