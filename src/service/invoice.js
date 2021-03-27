@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const { DateTime } = require('luxon');
 const { Invoice, InvoiceItem, Tag } = require('../model/db');
 
 const ITEM_SECTION_START_LINE = 7;
@@ -16,7 +17,15 @@ const invoiceService = () => {
       /Date:(\d{2}).(\d{2}).(\d{4}) *Time:(\d{2}):(\d{2}):(\d{2})/,
     );
     if (!mat) throw new Error('parse fail');
-    invoiceObj.shopDate = new Date(mat[3], Number(mat[2] - 1), mat[1], mat[4], mat[5], mat[6]);
+    invoiceObj.shopDate = DateTime.fromObject({
+      year: mat[3],
+      month: mat[2],
+      day: mat[1],
+      hour: mat[4],
+      minute: mat[5],
+      second: mat[6],
+      zone: 'UTC+8',
+    }).toJSDate();
 
     // start item section
     invoiceObj.items = [];
