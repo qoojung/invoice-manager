@@ -17,7 +17,7 @@
     "application/json"
   ],
   "paths": {
-    "/user": {
+    "/users": {
       "post": {
         "summary": "Register User",
         "operationId": "UserLogin",
@@ -292,7 +292,7 @@
             "description": "",
             "schema": {
               "example": {
-                "name": "??"
+                "name": "測試"
               },
               "type": "object",
               "properties": {
