@@ -1,0 +1,32 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.2.0
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '12.18.4'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          command: yarn add mocha-junit-reporter
+      - run: mkdir ~/reports
+      - run:
+          name: eslint
+          command: yarn run eslint ./ --format junit --output-file ./reports/eslint/eslint.xml
+      - run:
+          name: yarn run test
+          command:  yarn run mocha test --recursive --reporter mocha-junit-reporter  ./test
+          environment:
+             MOCHA_FILE: ./reports/mocha/results.xml
+          when: always
+      - store_test_results:
+          path: ./reports
+      - store_artifacts:
+          path: ./reports         
+workflows:
+  test_my_app:
+    jobs:
+      - test
