@@ -42,15 +42,14 @@ const invoiceService = () => {
     }
     return invoiceObj;
   };
-  const updateTag = async(invoiceId, userName, tagId) => {
-
+  const updateTag = async (invoiceId, userName, tagId) => {
     const res = await Invoice.update({
-      tagId
+      tagId,
     }, {
-      where:{
+      where: {
         id: invoiceId,
-        userName
-      }
+        userName,
+      },
     });
     return res;
   };
@@ -70,9 +69,9 @@ const invoiceService = () => {
       {
         where,
         attributes: {
-          exclude: ['tagId']
+          exclude: ['tagId'],
         },
-        include: [{ model: InvoiceItem }, { model: Tag, attributes:['name']}],
+        include: [{ model: InvoiceItem }, { model: Tag, attributes: ['name'] }],
       },
     );
   };
@@ -96,6 +95,8 @@ const invoiceService = () => {
     await InvoiceItem.bulkCreate(items);
     return invoiceEntity;
   };
-  return { saveInvoiceInfo, parseInvoice, getInvoicebyUser, updateTag };
+  return {
+    saveInvoiceInfo, parseInvoice, getInvoicebyUser, updateTag,
+  };
 };
 module.exports = invoiceService();

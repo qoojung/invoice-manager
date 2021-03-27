@@ -1,7 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const { User } = require('../model/db');
-const { SALT_ROUNDS } = require('../const');
 
 module.exports.setup = (passport) => {
   passport.serializeUser((user, done) => {
@@ -35,4 +34,4 @@ module.exports.setup = (passport) => {
       return done(error);
     }
   }));
-}
+};

@@ -2,7 +2,6 @@ const { StatusCodes } = require('http-status-codes');
 
 const invoiceService = require('../service/invoice');
 const ApiResponse = require('../helper/apiResponse');
-const logger = require('../helper/logger');
 
 const invoiceController = () => {
   async function getInvoiceByUser(req, res) {
@@ -15,14 +14,14 @@ const invoiceController = () => {
   }
   async function setTag(req, res) {
     const updateResp = await invoiceService.updateTag(
-      req.params.invoiceId, 
+      req.params.invoiceId,
       req.user.username,
-      req.body.tagId);
+      req.body.tagId,
+    );
     if (updateResp[0] === 1) {
-      return new ApiResponse(res).sendMsg("done");
-    } else {
-      return new ApiResponse(res).sendErr("can not get tag", StatusCodes.NOT_FOUND);
+      return new ApiResponse(res).sendMsg('done');
     }
+    return new ApiResponse(res).sendErr('can not get tag', StatusCodes.NOT_FOUND);
   }
   async function uploadInvoice(req, res) {
     const apiResp = new ApiResponse(res);

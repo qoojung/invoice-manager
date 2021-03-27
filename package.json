@@ -44,6 +44,7 @@
   "scripts": {
     "start": "node ./src/app.js",
     "debug": "nodemon ./src/app.js",
+    "lint": "yarn run eslint .",
     "test": "yarn run mocha --recursive ./test",
     "test-coverage": "yarn run nyc --all --reporter=html --reporter=text ./node_modules/.bin/mocha  --recursive ./test"
   }

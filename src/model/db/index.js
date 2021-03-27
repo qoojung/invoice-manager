@@ -23,7 +23,7 @@ const tables = {
   InvoiceItem: invoiceItem(sequelize),
   sequelize,
 };
-tables.Invoice.belongsTo(tables.Tag, { foreignKey: 'tagId'})
+tables.Invoice.belongsTo(tables.Tag, { foreignKey: 'tagId' });
 tables.Invoice.hasMany(tables.InvoiceItem, { foreignKey: 'invoiceId' });
 
 module.exports = tables;

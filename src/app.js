@@ -33,6 +33,7 @@ async function startSever() {
   app.use(passport.session());
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   app.use('/api/v1/', route);
+  /* eslint-disable-next-line no-unused-vars */
   app.use((err, req, res, next) => {
     new ApiResponse(res).sendErr(err.message);
   });
@@ -40,6 +41,6 @@ async function startSever() {
     logger.info(`Service is started at PORT ${port}`);
   });
 }
-(async()=>{ 
+(async () => {
   startSever();
-})()
+})();
