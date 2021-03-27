@@ -13,12 +13,7 @@ const logger = require('./helper/logger.js');
 const db = require('./model/db');
 const ApiResponse = require('./helper/apiResponse');
 
-async function setupDatabase() {
-  logger.debug('Database setup');
-  await db.sequelize.sync();
-}
 async function startSever() {
-  await setupDatabase();
   const app = express();
   const port = process.env.PORT || 3000;
   authSetup.setup(passport);
