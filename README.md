@@ -20,7 +20,7 @@ I hosted api doc via swagger.
 
 Please check [here](https://invoice-management-2021.herokuapp.com/api-docs/)
 ## Schema Design
-TBD
+![Er model](erdiagram.png =250x)
 
 ## How to Run
 ### Prerequisite

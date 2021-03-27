@@ -10,7 +10,6 @@ const swaggerDocument = require('./swagger.json');
 const authSetup = require('./helper/auth');
 const route = require('./router');
 const logger = require('./helper/logger.js');
-const db = require('./model/db');
 const ApiResponse = require('./helper/apiResponse');
 
 async function startSever() {
