@@ -7,7 +7,7 @@ const ApiResponse = require('../helper/apiResponse');
 const userController = () => {
   async function registerUser(req, res) {
     await userService.register(req.body);
-    new ApiResponse().sendMsg('done', StatusCodes.CREATED);
+    new ApiResponse(res).sendMsg('done', StatusCodes.CREATED);
   }
   return { registerUser };
 };
